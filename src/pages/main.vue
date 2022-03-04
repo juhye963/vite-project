@@ -1,14 +1,8 @@
 <template>
-<h3>THIS IS MAIN PAGE</h3>
-<div>
-    USER ID : {{ userId }}
-</div>
-<div>
-    USER NAME: {{ userName }}
-</div>
+<div>USER ID : {{ userId }}</div>
+<div>USER NAME: {{ userName }}</div>
 </template>
 <script>
-// import { defineComponent } from '@vue/composition-api'
 
 import { ref } from 'vue'; 
 import store from '../store';

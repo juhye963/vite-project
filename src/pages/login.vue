@@ -1,23 +1,16 @@
 <template>
-<h3>THIS IS LOGIN PAGE</h3>
-id
-<input type="text" v-model="loginId">
-password
-<input type="password" v-model="password">
+<div>id <input type="text" v-model="loginId"></div>
+<div>password <input type="password" v-model="password"></div>
 <button v-on:click="login">login</button>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import router from '../router';
 import backend from '../services/backend';
 import store from '../store';
 export default {
     setup() {
-        onMounted(() => {
-            // console.log(`${router.currentRoute.value.name} page mounted`);
-        });
-
         const loginId = ref('');
         const password = ref('');
 
