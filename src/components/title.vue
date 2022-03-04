@@ -10,7 +10,9 @@ h3 > span {
 import { computed } from "vue";
 
 export default {
-    props: ['name'],
+    props: {
+        name: String
+    },
     setup(props) {
         const title = computed(() => {
             return props.name

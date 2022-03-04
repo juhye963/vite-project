@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '../store';
+
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -46,10 +48,16 @@ const router = createRouter({
     ]
 });
 
-// router.beforeEach((to, from, next) => {
-//     console.log(to);
-//     console.log(from);
-//     console.log('next : ' + next);
-// })
+router.beforeEach((to, from, next) => {
+    // console.log(to);
+    // console.log(from);
+    console.log(store.getters.getCount)
+    if (to.name == 'main') {
+        store.commit('setCount', 0);
+    } else {
+        store.commit('increaseCount');
+    }
+    return next();
+});
 
 export default router

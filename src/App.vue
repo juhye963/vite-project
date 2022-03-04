@@ -1,6 +1,7 @@
 
 <template>
 <h1>VUE & VITE & TS</h1>
+{{ getGlobalCount }}
 <div class="nav">
 <span><router-link :to="{ name: 'main' }">MAIN</router-link></span>
 <span><router-link :to="{ name: 'login'}">LOGIN</router-link></span>
@@ -9,6 +10,7 @@
 <hr>
 <Title :name="pageName"></Title>
 <router-view></router-view>
+
 </template>
 
 <style>
@@ -44,22 +46,30 @@ a:hover {
 
 </style>
 <script>
-import { computed, onMounted, watch } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import router from './router';
-import store from './store';
+import { default as store, mapComputedGetters } from './store';
 import Title from './components/title.vue'
 
 export default {
   components: { Title },
   setup() {
     onMounted(() => {
-      
+      console.log(store.getters)
     });
     const pageName = computed(() => {
       return router.currentRoute.value.meta.pageName ?? 'MAIN';  
-    })
+    });
+    
+    // const globalCount  = computed(() => {
+    //     return store.getters.getGlobalCount;
+    // });
     return {
-      pageName
+      pageName,
+      // globalCount,
+      ...mapComputedGetters({
+        getGlobalCount: 'getGlobalCount'
+      })
     }
   },
 }
